@@ -1,0 +1,382 @@
+  A_nudge_trigger_.Set_FindCutOutObstacles_last_l_info(FindCutOutObstacles_last_l_info_0_);
+  A_nudge_trigger_.Set_CutInObstacle_counter(CutInObstacle_counter_0_left,CutInObstacle_counter_0_right);
+  A_nudge_trigger_.Set_FindCutOutObstacles_last_timestamp(FindCutOutObstacles_last_timestamp_0_);
+  A_nudge_trigger_.Set_FindCutOutObstacles_OnLane_id_map_stat(
+      FindCutOutObstacles_OnLane_id_map_stat_0_);
+  A_nudge_trigger_.Set_FindCutOutObstacles_cut_out_id_map_stat(
+      FindCutOutObstacles_cut_out_id_map_stat_0_);
+  A_nudge_trigger_.Set_FindCutOutObstacles_slow_cutout_id_map_stat(
+      FindCutOutObstacles_slow_cutout_id_map_stat_0_);
+  A_nudge_trigger_.Set_lanewidth_ego_lane_last(lanewidth_ego_lane_last_0_);
+  A_nudge_trigger_.Set_lanewidth_side_lane_last(lanewidth_side_lane_last_0_);
+  A_nudge_trigger_.Set_nudge_trigger_lanewidth_ego_lane(nudge_trigger_lanewidth_ego_lane_0_);
+  A_nudge_trigger_.Set_nudge_trigger_lanewidth_side_lane(nudge_trigger_lanewidth_side_lane_0_);
+  A_nudge_trigger_.Set_is_nudging_ego_lane_last(is_nudging_ego_lane_last_0_);
+  A_nudge_trigger_.Set_left_roadedge_nudge_flag_last(left_roadedge_nudge_flag_last_0_);
+  A_nudge_trigger_.Set_right_roadedge_nudge_flag_last(right_roadedge_nudge_flag_last_0_);
+  A_nudge_trigger_.Set_is_left_lanecurb_flag(is_left_lanecurb_flag_0_);
+  A_nudge_trigger_.Set_is_right_lanecurb_flag(is_right_lanecurb_flag_0_);
+  A_nudge_trigger_.Set_final_offset_last(final_offset_last_0_);
+  A_nudge_trigger_.Set_pre_left_nudge_obj(pre_left_nudge_obj_0_);
+  A_nudge_trigger_.Set_pre_right_nudge_obj(pre_right_nudge_obj_0_);
+  A_nudge_trigger_.Set_left_target_obj_static(left_target_obj_static_0_);
+  A_nudge_trigger_.Set_right_target_obj_static(right_target_obj_static_0_);
+  A_nudge_trigger_.Set_left_nudge_obj_stat(left_nudge_obj_stat_0_);
+  A_nudge_trigger_.Set_right_nudge_obj_stat(right_nudge_obj_stat_0_);
+  A_nudge_trigger_.Set_offset_last(offset_last_0_);
+  A_nudge_trigger_.Set_forced_right_lane_change_count(forced_right_lane_change_count_0_);
+  A_nudge_trigger_.Set_forced_left_lane_change_count(forced_left_lane_change_count_0_);
+  A_nudge_trigger_.Set_left_vehicle_counters(left_vehicle_counters_0_);
+  A_nudge_trigger_.Set_right_vehicle_counters(right_vehicle_counters_0_);
+  A_nudge_trigger_.Set_left_roadedge_offset_last(left_roadedge_offset_last_0_);
+  A_nudge_trigger_.Set_right_roadedge_offset_last(right_roadedge_offset_last_0_);
+  A_nudge_trigger_.Set_left_roadedge_counters_level_1(left_roadedge_counters_level_1_0_);
+  A_nudge_trigger_.Set_left_roadedge_counters_level_2(left_roadedge_counters_level_2_0_);
+  A_nudge_trigger_.Set_right_roadedge_counters_level_1(right_roadedge_counters_level_1_0_);
+  A_nudge_trigger_.Set_right_roadedge_counters_level_2(right_roadedge_counters_level_2_0_);
+  A_nudge_trigger_.Set_last_left_soft_roadedge_offset(last_left_soft_roadedge_offset_0_);
+  A_nudge_trigger_.Set_last_right_soft_roadedge_offset(last_right_soft_roadedge_offset_0_);
+  A_nudge_trigger_.Set_left_lat_overlap_increase_counter(left_lat_overlap_increase_counter_0_);
+  A_nudge_trigger_.Set_right_lat_overlap_increase_counter(right_lat_overlap_increase_counter_0_);
+  A_nudge_trigger_.Set_left_lat_overlap_decrease_counter(left_lat_overlap_decrease_counter_0_);
+  A_nudge_trigger_.Set_right_lat_overlap_decrease_counter(right_lat_overlap_decrease_counter_0_);
+  A_nudge_trigger_.Set_has_left_roadedge_flag(has_left_roadedge_flag_0_);
+  A_nudge_trigger_.Set_has_right_roadedge_flag(has_right_roadedge_flag_0_);
+  A_nudge_trigger_.Set_last_left_soft_roadedge_offset_ads(last_left_soft_roadedge_offset_ads_0_);
+  A_nudge_trigger_.Set_last_right_soft_roadedge_offset_ads(last_right_soft_roadedge_offset_ads_0_);
+  A_nudge_trigger_.Set_left_lat_overlap_increase_counter_ads(
+      left_lat_overlap_increase_counter_ads_0_);
+  A_nudge_trigger_.Set_right_lat_overlap_increase_counter_ads(
+      right_lat_overlap_increase_counter_ads_0_);
+  A_nudge_trigger_.Set_left_lat_overlap_decrease_counter_ads(
+      left_lat_overlap_decrease_counter_ads_0_);
+  A_nudge_trigger_.Set_right_lat_overlap_decrease_counter_ads(
+      right_lat_overlap_decrease_counter_ads_0_);
+  A_nudge_trigger_.Set_has_left_roadedge_flag_ads(has_left_roadedge_flag_ads_0_);
+  A_nudge_trigger_.Set_has_right_roadedge_flag_ads(has_right_roadedge_flag_ads_0_);
+  A_nudge_trigger_.Set_last_xy_point(last_xy_point_0_);
+
+  bool temp0 = A_nudge_trigger_.RunOnce(lane_change_type, lane_change_status, frame_, A_lane_index,semantic_map_manager_);
+
+  std::vector<double> nudge_soft_constrain =
+      DependencyInjector::Instance()->Getnudge_soft_constrain();
+  bool is_nudging_ego_lane = DependencyInjector::Instance()->Getis_nudging_ego_lane();
+  std::pair<bool, std::vector<double>> A_nudge_result =
+      std::make_pair(is_nudging_ego_lane, nudge_soft_constrain);
+  nudge_result.emplace_back(std::make_pair(A_nudge_result, A_lane_index));
+  AINFO << "A_nudge_trigger_" << " A_lane_index is " << A_lane_index << ", nudge offset is " << nudge_soft_constrain[0];
+
+  FindCutOutObstacles_last_l_info_0_ = A_nudge_trigger_.Get_FindCutOutObstacles_last_l_info();
+  CutInObstacle_counter_0_left = A_nudge_trigger_.Get_CutInObstacle_counter(1);
+  CutInObstacle_counter_0_right = A_nudge_trigger_.Get_CutInObstacle_counter(-1);
+  FindCutOutObstacles_last_timestamp_0_ = A_nudge_trigger_.Get_FindCutOutObstacles_last_timestamp();
+  FindCutOutObstacles_OnLane_id_map_stat_0_ =
+      A_nudge_trigger_.Get_FindCutOutObstacles_OnLane_id_map_stat();
+  FindCutOutObstacles_cut_out_id_map_stat_0_ =
+      A_nudge_trigger_.Get_FindCutOutObstacles_cut_out_id_map_stat();
+  FindCutOutObstacles_slow_cutout_id_map_stat_0_ =
+      A_nudge_trigger_.Get_FindCutOutObstacles_slow_cutout_id_map_stat();
+  lanewidth_ego_lane_last_0_ = A_nudge_trigger_.Get_lanewidth_ego_lane_last();
+  lanewidth_side_lane_last_0_ = A_nudge_trigger_.Get_lanewidth_side_lane_last();
+  nudge_trigger_lanewidth_ego_lane_0_ = A_nudge_trigger_.Get_nudge_trigger_lanewidth_ego_lane();
+  nudge_trigger_lanewidth_side_lane_0_ = A_nudge_trigger_.Get_nudge_trigger_lanewidth_side_lane();
+  is_nudging_ego_lane_last_0_ = A_nudge_trigger_.Get_is_nudging_ego_lane_last();
+  left_roadedge_nudge_flag_last_0_ = A_nudge_trigger_.Get_left_roadedge_nudge_flag_last();
+  right_roadedge_nudge_flag_last_0_ = A_nudge_trigger_.Get_right_roadedge_nudge_flag_last();
+  is_left_lanecurb_flag_0_ = A_nudge_trigger_.Get_is_left_lanecurb_flag();
+  is_right_lanecurb_flag_0_ = A_nudge_trigger_.Get_is_right_lanecurb_flag();
+  final_offset_last_0_ = A_nudge_trigger_.Get_final_offset_last();
+  pre_left_nudge_obj_0_ = A_nudge_trigger_.Get_pre_left_nudge_obj();
+  pre_right_nudge_obj_0_ = A_nudge_trigger_.Get_pre_right_nudge_obj();
+  left_target_obj_static_0_ = A_nudge_trigger_.Get_left_target_obj_static();
+  right_target_obj_static_0_ = A_nudge_trigger_.Get_right_target_obj_static();
+  left_nudge_obj_stat_0_ = A_nudge_trigger_.Get_left_nudge_obj_stat();
+  right_nudge_obj_stat_0_ = A_nudge_trigger_.Get_right_nudge_obj_stat();
+  offset_last_0_ = A_nudge_trigger_.Get_offset_last();
+  forced_right_lane_change_count_0_ = A_nudge_trigger_.Get_forced_right_lane_change_count();
+  forced_left_lane_change_count_0_ = A_nudge_trigger_.Get_forced_left_lane_change_count();
+  left_vehicle_counters_0_ = A_nudge_trigger_.Get_left_vehicle_counters();
+  right_vehicle_counters_0_ = A_nudge_trigger_.Get_right_vehicle_counters();
+  left_roadedge_offset_last_0_ = A_nudge_trigger_.Get_left_roadedge_offset_last();
+  right_roadedge_offset_last_0_ = A_nudge_trigger_.Get_right_roadedge_offset_last();
+  left_roadedge_counters_level_1_0_ = A_nudge_trigger_.Get_left_roadedge_counters_level_1();
+  left_roadedge_counters_level_2_0_ = A_nudge_trigger_.Get_left_roadedge_counters_level_2();
+  right_roadedge_counters_level_1_0_ = A_nudge_trigger_.Get_right_roadedge_counters_level_1();
+  right_roadedge_counters_level_2_0_ = A_nudge_trigger_.Get_right_roadedge_counters_level_2();
+  last_left_soft_roadedge_offset_0_ = A_nudge_trigger_.Get_last_left_soft_roadedge_offset();
+  last_right_soft_roadedge_offset_0_ = A_nudge_trigger_.Get_last_right_soft_roadedge_offset();
+  left_lat_overlap_increase_counter_0_ = A_nudge_trigger_.Get_left_lat_overlap_increase_counter();
+  right_lat_overlap_increase_counter_0_ = A_nudge_trigger_.Get_right_lat_overlap_increase_counter();
+  left_lat_overlap_decrease_counter_0_ = A_nudge_trigger_.Get_left_lat_overlap_decrease_counter();
+  right_lat_overlap_decrease_counter_0_ = A_nudge_trigger_.Get_right_lat_overlap_decrease_counter();
+  has_left_roadedge_flag_0_ = A_nudge_trigger_.Get_has_left_roadedge_flag();
+  has_right_roadedge_flag_0_ = A_nudge_trigger_.Get_has_right_roadedge_flag();
+  last_left_soft_roadedge_offset_ads_0_ = A_nudge_trigger_.Get_last_left_soft_roadedge_offset_ads();
+  last_right_soft_roadedge_offset_ads_0_ =
+      A_nudge_trigger_.Get_last_right_soft_roadedge_offset_ads();
+  left_lat_overlap_increase_counter_ads_0_ =
+      A_nudge_trigger_.Get_left_lat_overlap_increase_counter_ads();
+  right_lat_overlap_increase_counter_ads_0_ =
+      A_nudge_trigger_.Get_right_lat_overlap_increase_counter_ads();
+  left_lat_overlap_decrease_counter_ads_0_ =
+      A_nudge_trigger_.Get_left_lat_overlap_decrease_counter_ads();
+  right_lat_overlap_decrease_counter_ads_0_ =
+      A_nudge_trigger_.Get_right_lat_overlap_decrease_counter_ads();
+  has_left_roadedge_flag_ads_0_ = A_nudge_trigger_.Get_has_left_roadedge_flag_ads();
+  has_right_roadedge_flag_ads_0_ = A_nudge_trigger_.Get_has_right_roadedge_flag_ads();
+  last_xy_point_0_ = A_nudge_trigger_.Get_last_xy_point();
+  // ego
+  decision_planner::nudge_trigger B_nudge_trigger_;
+  B_nudge_trigger_.Set_FindCutOutObstacles_last_l_info(FindCutOutObstacles_last_l_info_1_);
+  B_nudge_trigger_.Set_CutInObstacle_counter(CutInObstacle_counter_1_left,CutInObstacle_counter_1_right);
+  B_nudge_trigger_.Set_FindCutOutObstacles_last_timestamp(FindCutOutObstacles_last_timestamp_1_);
+  B_nudge_trigger_.Set_FindCutOutObstacles_OnLane_id_map_stat(
+      FindCutOutObstacles_OnLane_id_map_stat_1_);
+  B_nudge_trigger_.Set_FindCutOutObstacles_cut_out_id_map_stat(
+      FindCutOutObstacles_cut_out_id_map_stat_1_);
+  B_nudge_trigger_.Set_FindCutOutObstacles_slow_cutout_id_map_stat(
+      FindCutOutObstacles_slow_cutout_id_map_stat_1_);
+  B_nudge_trigger_.Set_lanewidth_ego_lane_last(lanewidth_ego_lane_last_1_);
+  B_nudge_trigger_.Set_lanewidth_side_lane_last(lanewidth_side_lane_last_1_);
+  B_nudge_trigger_.Set_nudge_trigger_lanewidth_ego_lane(nudge_trigger_lanewidth_ego_lane_1_);
+  B_nudge_trigger_.Set_nudge_trigger_lanewidth_side_lane(nudge_trigger_lanewidth_side_lane_1_);
+  B_nudge_trigger_.Set_is_nudging_ego_lane_last(is_nudging_ego_lane_last_1_);
+  B_nudge_trigger_.Set_left_roadedge_nudge_flag_last(left_roadedge_nudge_flag_last_1_);
+  B_nudge_trigger_.Set_right_roadedge_nudge_flag_last(right_roadedge_nudge_flag_last_1_);
+  B_nudge_trigger_.Set_is_left_lanecurb_flag(is_left_lanecurb_flag_1_);
+  B_nudge_trigger_.Set_is_right_lanecurb_flag(is_right_lanecurb_flag_1_);
+  B_nudge_trigger_.Set_final_offset_last(final_offset_last_1_);
+  B_nudge_trigger_.Set_pre_left_nudge_obj(pre_left_nudge_obj_1_);
+  B_nudge_trigger_.Set_pre_right_nudge_obj(pre_right_nudge_obj_1_);
+  B_nudge_trigger_.Set_left_target_obj_static(left_target_obj_static_1_);
+  B_nudge_trigger_.Set_right_target_obj_static(right_target_obj_static_1_);
+  B_nudge_trigger_.Set_left_nudge_obj_stat(left_nudge_obj_stat_1_);
+  B_nudge_trigger_.Set_right_nudge_obj_stat(right_nudge_obj_stat_1_);
+  B_nudge_trigger_.Set_offset_last(offset_last_1_);
+  B_nudge_trigger_.Set_forced_right_lane_change_count(forced_right_lane_change_count_1_);
+  B_nudge_trigger_.Set_forced_left_lane_change_count(forced_left_lane_change_count_1_);
+  B_nudge_trigger_.Set_left_vehicle_counters(left_vehicle_counters_1_);
+  B_nudge_trigger_.Set_right_vehicle_counters(right_vehicle_counters_1_);
+  B_nudge_trigger_.Set_left_roadedge_offset_last(left_roadedge_offset_last_1_);
+  B_nudge_trigger_.Set_right_roadedge_offset_last(right_roadedge_offset_last_1_);
+  B_nudge_trigger_.Set_left_roadedge_counters_level_1(left_roadedge_counters_level_1_1_);
+  B_nudge_trigger_.Set_left_roadedge_counters_level_2(left_roadedge_counters_level_2_1_);
+  B_nudge_trigger_.Set_right_roadedge_counters_level_1(right_roadedge_counters_level_1_1_);
+  B_nudge_trigger_.Set_right_roadedge_counters_level_2(right_roadedge_counters_level_2_1_);
+  B_nudge_trigger_.Set_last_left_soft_roadedge_offset(last_left_soft_roadedge_offset_1_);
+  B_nudge_trigger_.Set_last_right_soft_roadedge_offset(last_right_soft_roadedge_offset_1_);
+  B_nudge_trigger_.Set_left_lat_overlap_increase_counter(left_lat_overlap_increase_counter_1_);
+  B_nudge_trigger_.Set_right_lat_overlap_increase_counter(right_lat_overlap_increase_counter_1_);
+  B_nudge_trigger_.Set_left_lat_overlap_decrease_counter(left_lat_overlap_decrease_counter_1_);
+  B_nudge_trigger_.Set_right_lat_overlap_decrease_counter(right_lat_overlap_decrease_counter_1_);
+  B_nudge_trigger_.Set_has_left_roadedge_flag(has_left_roadedge_flag_1_);
+  B_nudge_trigger_.Set_has_right_roadedge_flag(has_right_roadedge_flag_1_);
+  B_nudge_trigger_.Set_last_left_soft_roadedge_offset_ads(last_left_soft_roadedge_offset_ads_1_);
+  B_nudge_trigger_.Set_last_right_soft_roadedge_offset_ads(last_right_soft_roadedge_offset_ads_1_);
+  B_nudge_trigger_.Set_left_lat_overlap_increase_counter_ads(
+      left_lat_overlap_increase_counter_ads_1_);
+  B_nudge_trigger_.Set_right_lat_overlap_increase_counter_ads(
+      right_lat_overlap_increase_counter_ads_1_);
+  B_nudge_trigger_.Set_left_lat_overlap_decrease_counter_ads(
+      left_lat_overlap_decrease_counter_ads_1_);
+  B_nudge_trigger_.Set_right_lat_overlap_decrease_counter_ads(
+      right_lat_overlap_decrease_counter_ads_1_);
+  B_nudge_trigger_.Set_has_left_roadedge_flag_ads(has_left_roadedge_flag_ads_1_);
+  B_nudge_trigger_.Set_has_right_roadedge_flag_ads(has_right_roadedge_flag_ads_1_);
+  B_nudge_trigger_.Set_last_xy_point(last_xy_point_1_);
+
+  bool temp1 = B_nudge_trigger_.RunOnce(lane_change_type, lane_change_status, frame_, B_lane_index,semantic_map_manager_);
+  
+    nudge_soft_constrain = DependencyInjector::Instance()->Getnudge_soft_constrain();
+  is_nudging_ego_lane = DependencyInjector::Instance()->Getis_nudging_ego_lane();
+  std::pair<bool, std::vector<double>> B_nudge_result =
+      std::make_pair(is_nudging_ego_lane, nudge_soft_constrain);
+  nudge_result.emplace_back(std::make_pair(B_nudge_result, B_lane_index));
+  AINFO << "B_nudge_trigger_" << " B_lane_index is " << B_lane_index << ", nudge offset is " << nudge_soft_constrain[0];
+  FindCutOutObstacles_last_l_info_1_ = B_nudge_trigger_.Get_FindCutOutObstacles_last_l_info();
+  CutInObstacle_counter_1_left = B_nudge_trigger_.Get_CutInObstacle_counter(1);
+  CutInObstacle_counter_1_right = B_nudge_trigger_.Get_CutInObstacle_counter(-1);
+  FindCutOutObstacles_last_timestamp_1_ = B_nudge_trigger_.Get_FindCutOutObstacles_last_timestamp();
+  FindCutOutObstacles_OnLane_id_map_stat_1_ =
+      B_nudge_trigger_.Get_FindCutOutObstacles_OnLane_id_map_stat();
+  FindCutOutObstacles_cut_out_id_map_stat_1_ =
+      B_nudge_trigger_.Get_FindCutOutObstacles_cut_out_id_map_stat();
+  FindCutOutObstacles_slow_cutout_id_map_stat_1_ =
+      B_nudge_trigger_.Get_FindCutOutObstacles_slow_cutout_id_map_stat();
+  lanewidth_ego_lane_last_1_ = B_nudge_trigger_.Get_lanewidth_ego_lane_last();
+  lanewidth_side_lane_last_1_ = B_nudge_trigger_.Get_lanewidth_side_lane_last();
+  nudge_trigger_lanewidth_ego_lane_1_ = B_nudge_trigger_.Get_nudge_trigger_lanewidth_ego_lane();
+  nudge_trigger_lanewidth_side_lane_1_ = B_nudge_trigger_.Get_nudge_trigger_lanewidth_side_lane();
+  is_nudging_ego_lane_last_1_ = B_nudge_trigger_.Get_is_nudging_ego_lane_last();
+  left_roadedge_nudge_flag_last_1_ = B_nudge_trigger_.Get_left_roadedge_nudge_flag_last();
+  right_roadedge_nudge_flag_last_1_ = B_nudge_trigger_.Get_right_roadedge_nudge_flag_last();
+  is_left_lanecurb_flag_1_ = B_nudge_trigger_.Get_is_left_lanecurb_flag();
+  is_right_lanecurb_flag_1_ = B_nudge_trigger_.Get_is_right_lanecurb_flag();
+  final_offset_last_1_ = B_nudge_trigger_.Get_final_offset_last();
+  pre_left_nudge_obj_1_ = B_nudge_trigger_.Get_pre_left_nudge_obj();
+  pre_right_nudge_obj_1_ = B_nudge_trigger_.Get_pre_right_nudge_obj();
+  left_target_obj_static_1_ = B_nudge_trigger_.Get_left_target_obj_static();
+  right_target_obj_static_1_ = B_nudge_trigger_.Get_right_target_obj_static();
+  left_nudge_obj_stat_1_ = B_nudge_trigger_.Get_left_nudge_obj_stat();
+  right_nudge_obj_stat_1_ = B_nudge_trigger_.Get_right_nudge_obj_stat();
+  offset_last_1_ = B_nudge_trigger_.Get_offset_last();
+  forced_right_lane_change_count_1_ = B_nudge_trigger_.Get_forced_right_lane_change_count();
+  forced_left_lane_change_count_1_ = B_nudge_trigger_.Get_forced_left_lane_change_count();
+  left_vehicle_counters_1_ = B_nudge_trigger_.Get_left_vehicle_counters();
+  right_vehicle_counters_1_ = B_nudge_trigger_.Get_right_vehicle_counters();
+  left_roadedge_offset_last_1_ = B_nudge_trigger_.Get_left_roadedge_offset_last();
+  right_roadedge_offset_last_1_ = B_nudge_trigger_.Get_right_roadedge_offset_last();
+  left_roadedge_counters_level_1_1_ = B_nudge_trigger_.Get_left_roadedge_counters_level_1();
+  left_roadedge_counters_level_2_1_ = B_nudge_trigger_.Get_left_roadedge_counters_level_2();
+  right_roadedge_counters_level_1_1_ = B_nudge_trigger_.Get_right_roadedge_counters_level_1();
+  right_roadedge_counters_level_2_1_ = B_nudge_trigger_.Get_right_roadedge_counters_level_2();
+  last_left_soft_roadedge_offset_1_ = B_nudge_trigger_.Get_last_left_soft_roadedge_offset();
+  last_right_soft_roadedge_offset_1_ = B_nudge_trigger_.Get_last_right_soft_roadedge_offset();
+  left_lat_overlap_increase_counter_1_ = B_nudge_trigger_.Get_left_lat_overlap_increase_counter();
+  right_lat_overlap_increase_counter_1_ = B_nudge_trigger_.Get_right_lat_overlap_increase_counter();
+  left_lat_overlap_decrease_counter_1_ = B_nudge_trigger_.Get_left_lat_overlap_decrease_counter();
+  right_lat_overlap_decrease_counter_1_ = B_nudge_trigger_.Get_right_lat_overlap_decrease_counter();
+  has_left_roadedge_flag_1_ = B_nudge_trigger_.Get_has_left_roadedge_flag();
+  has_right_roadedge_flag_1_ = B_nudge_trigger_.Get_has_right_roadedge_flag();
+  last_left_soft_roadedge_offset_ads_1_ = B_nudge_trigger_.Get_last_left_soft_roadedge_offset_ads();
+  last_right_soft_roadedge_offset_ads_1_ =
+      B_nudge_trigger_.Get_last_right_soft_roadedge_offset_ads();
+  left_lat_overlap_increase_counter_ads_1_ =
+      B_nudge_trigger_.Get_left_lat_overlap_increase_counter_ads();
+  right_lat_overlap_increase_counter_ads_1_ =
+      B_nudge_trigger_.Get_right_lat_overlap_increase_counter_ads();
+  left_lat_overlap_decrease_counter_ads_1_ =
+      B_nudge_trigger_.Get_left_lat_overlap_decrease_counter_ads();
+  right_lat_overlap_decrease_counter_ads_1_ =
+      B_nudge_trigger_.Get_right_lat_overlap_decrease_counter_ads();
+  has_left_roadedge_flag_ads_1_ = B_nudge_trigger_.Get_has_left_roadedge_flag_ads();
+  has_right_roadedge_flag_ads_1_ = B_nudge_trigger_.Get_has_right_roadedge_flag_ads();
+  last_xy_point_1_ = B_nudge_trigger_.Get_last_xy_point();
+  
+    // right
+  decision_planner::nudge_trigger C_nudge_trigger_;
+  C_nudge_trigger_.Set_FindCutOutObstacles_last_l_info(FindCutOutObstacles_last_l_info_2_);
+  C_nudge_trigger_.Set_CutInObstacle_counter(CutInObstacle_counter_2_left,CutInObstacle_counter_2_right);
+  C_nudge_trigger_.Set_FindCutOutObstacles_last_timestamp(FindCutOutObstacles_last_timestamp_2_);
+  C_nudge_trigger_.Set_FindCutOutObstacles_OnLane_id_map_stat(
+      FindCutOutObstacles_OnLane_id_map_stat_2_);
+  C_nudge_trigger_.Set_FindCutOutObstacles_cut_out_id_map_stat(
+      FindCutOutObstacles_cut_out_id_map_stat_2_);
+  C_nudge_trigger_.Set_FindCutOutObstacles_slow_cutout_id_map_stat(
+      FindCutOutObstacles_slow_cutout_id_map_stat_2_);
+  C_nudge_trigger_.Set_lanewidth_ego_lane_last(lanewidth_ego_lane_last_2_);
+  C_nudge_trigger_.Set_lanewidth_side_lane_last(lanewidth_side_lane_last_2_);
+  C_nudge_trigger_.Set_nudge_trigger_lanewidth_ego_lane(nudge_trigger_lanewidth_ego_lane_2_);
+  C_nudge_trigger_.Set_nudge_trigger_lanewidth_side_lane(nudge_trigger_lanewidth_side_lane_2_);
+  C_nudge_trigger_.Set_is_nudging_ego_lane_last(is_nudging_ego_lane_last_2_);
+  C_nudge_trigger_.Set_left_roadedge_nudge_flag_last(left_roadedge_nudge_flag_last_2_);
+  C_nudge_trigger_.Set_right_roadedge_nudge_flag_last(right_roadedge_nudge_flag_last_2_);
+  C_nudge_trigger_.Set_is_left_lanecurb_flag(is_left_lanecurb_flag_2_);
+  C_nudge_trigger_.Set_is_right_lanecurb_flag(is_right_lanecurb_flag_2_);
+  C_nudge_trigger_.Set_final_offset_last(final_offset_last_2_);
+  C_nudge_trigger_.Set_pre_left_nudge_obj(pre_left_nudge_obj_2_);
+  C_nudge_trigger_.Set_pre_right_nudge_obj(pre_right_nudge_obj_2_);
+  C_nudge_trigger_.Set_left_target_obj_static(left_target_obj_static_2_);
+  C_nudge_trigger_.Set_right_target_obj_static(right_target_obj_static_2_);
+  C_nudge_trigger_.Set_left_nudge_obj_stat(left_nudge_obj_stat_2_);
+  C_nudge_trigger_.Set_right_nudge_obj_stat(right_nudge_obj_stat_2_);
+  C_nudge_trigger_.Set_offset_last(offset_last_2_);
+  C_nudge_trigger_.Set_forced_right_lane_change_count(forced_right_lane_change_count_2_);
+  C_nudge_trigger_.Set_forced_left_lane_change_count(forced_left_lane_change_count_2_);
+  C_nudge_trigger_.Set_left_vehicle_counters(left_vehicle_counters_2_);
+  C_nudge_trigger_.Set_right_vehicle_counters(right_vehicle_counters_2_);
+  C_nudge_trigger_.Set_left_roadedge_offset_last(left_roadedge_offset_last_2_);
+  C_nudge_trigger_.Set_right_roadedge_offset_last(right_roadedge_offset_last_2_);
+  C_nudge_trigger_.Set_left_roadedge_counters_level_1(left_roadedge_counters_level_1_2_);
+  C_nudge_trigger_.Set_left_roadedge_counters_level_2(left_roadedge_counters_level_2_2_);
+  C_nudge_trigger_.Set_right_roadedge_counters_level_1(right_roadedge_counters_level_1_2_);
+  C_nudge_trigger_.Set_right_roadedge_counters_level_2(right_roadedge_counters_level_2_2_);
+  C_nudge_trigger_.Set_last_left_soft_roadedge_offset(last_left_soft_roadedge_offset_2_);
+  C_nudge_trigger_.Set_last_right_soft_roadedge_offset(last_right_soft_roadedge_offset_2_);
+  C_nudge_trigger_.Set_left_lat_overlap_increase_counter(left_lat_overlap_increase_counter_2_);
+  C_nudge_trigger_.Set_right_lat_overlap_increase_counter(right_lat_overlap_increase_counter_2_);
+  C_nudge_trigger_.Set_left_lat_overlap_decrease_counter(left_lat_overlap_decrease_counter_2_);
+  C_nudge_trigger_.Set_right_lat_overlap_decrease_counter(right_lat_overlap_decrease_counter_2_);
+  C_nudge_trigger_.Set_has_left_roadedge_flag(has_left_roadedge_flag_2_);
+  C_nudge_trigger_.Set_has_right_roadedge_flag(has_right_roadedge_flag_2_);
+  C_nudge_trigger_.Set_last_left_soft_roadedge_offset_ads(last_left_soft_roadedge_offset_ads_2_);
+  C_nudge_trigger_.Set_last_right_soft_roadedge_offset_ads(last_right_soft_roadedge_offset_ads_2_);
+  C_nudge_trigger_.Set_left_lat_overlap_increase_counter_ads(
+      left_lat_overlap_increase_counter_ads_2_);
+  C_nudge_trigger_.Set_right_lat_overlap_increase_counter_ads(
+      right_lat_overlap_increase_counter_ads_2_);
+  C_nudge_trigger_.Set_left_lat_overlap_decrease_counter_ads(
+      left_lat_overlap_decrease_counter_ads_2_);
+  C_nudge_trigger_.Set_right_lat_overlap_decrease_counter_ads(
+      right_lat_overlap_decrease_counter_ads_2_);
+  C_nudge_trigger_.Set_has_left_roadedge_flag_ads(has_left_roadedge_flag_ads_2_);
+  C_nudge_trigger_.Set_has_right_roadedge_flag_ads(has_right_roadedge_flag_ads_2_);
+  C_nudge_trigger_.Set_last_xy_point(last_xy_point_2_);
+
+  bool temp2 = C_nudge_trigger_.RunOnce(lane_change_type, lane_change_status, frame_, C_lane_index, semantic_map_manager_);
+  
+    nudge_soft_constrain = DependencyInjector::Instance()->Getnudge_soft_constrain();
+  is_nudging_ego_lane = DependencyInjector::Instance()->Getis_nudging_ego_lane();
+  std::pair<bool, std::vector<double>> C_nudge_result =
+      std::make_pair(is_nudging_ego_lane, nudge_soft_constrain);
+  nudge_result.emplace_back(std::make_pair(C_nudge_result, C_lane_index));
+  AINFO << "C_nudge_trigger_" << " C_lane_index is " << C_lane_index <<", nudge offset is " << nudge_soft_constrain[0];
+  FindCutOutObstacles_last_l_info_2_ = C_nudge_trigger_.Get_FindCutOutObstacles_last_l_info();
+  CutInObstacle_counter_2_left = C_nudge_trigger_.Get_CutInObstacle_counter(1);
+  CutInObstacle_counter_2_right = C_nudge_trigger_.Get_CutInObstacle_counter(-1);
+  FindCutOutObstacles_last_timestamp_2_ = C_nudge_trigger_.Get_FindCutOutObstacles_last_timestamp();
+  FindCutOutObstacles_OnLane_id_map_stat_2_ =
+      C_nudge_trigger_.Get_FindCutOutObstacles_OnLane_id_map_stat();
+  FindCutOutObstacles_cut_out_id_map_stat_2_ =
+      C_nudge_trigger_.Get_FindCutOutObstacles_cut_out_id_map_stat();
+  FindCutOutObstacles_slow_cutout_id_map_stat_2_ =
+      C_nudge_trigger_.Get_FindCutOutObstacles_slow_cutout_id_map_stat();
+  lanewidth_ego_lane_last_2_ = C_nudge_trigger_.Get_lanewidth_ego_lane_last();
+  lanewidth_side_lane_last_2_ = C_nudge_trigger_.Get_lanewidth_side_lane_last();
+  nudge_trigger_lanewidth_ego_lane_2_ = C_nudge_trigger_.Get_nudge_trigger_lanewidth_ego_lane();
+  nudge_trigger_lanewidth_side_lane_2_ = C_nudge_trigger_.Get_nudge_trigger_lanewidth_side_lane();
+  is_nudging_ego_lane_last_2_ = C_nudge_trigger_.Get_is_nudging_ego_lane_last();
+  left_roadedge_nudge_flag_last_2_ = C_nudge_trigger_.Get_left_roadedge_nudge_flag_last();
+  right_roadedge_nudge_flag_last_2_ = C_nudge_trigger_.Get_right_roadedge_nudge_flag_last();
+  is_left_lanecurb_flag_2_ = C_nudge_trigger_.Get_is_left_lanecurb_flag();
+  is_right_lanecurb_flag_2_ = C_nudge_trigger_.Get_is_right_lanecurb_flag();
+  final_offset_last_2_ = C_nudge_trigger_.Get_final_offset_last();
+  pre_left_nudge_obj_2_ = C_nudge_trigger_.Get_pre_left_nudge_obj();
+  pre_right_nudge_obj_2_ = C_nudge_trigger_.Get_pre_right_nudge_obj();
+  left_target_obj_static_2_ = C_nudge_trigger_.Get_left_target_obj_static();
+  right_target_obj_static_2_ = C_nudge_trigger_.Get_right_target_obj_static();
+  left_nudge_obj_stat_2_ = C_nudge_trigger_.Get_left_nudge_obj_stat();
+  right_nudge_obj_stat_2_ = C_nudge_trigger_.Get_right_nudge_obj_stat();
+  offset_last_2_ = C_nudge_trigger_.Get_offset_last();
+  forced_right_lane_change_count_2_ = C_nudge_trigger_.Get_forced_right_lane_change_count();
+  forced_left_lane_change_count_2_ = C_nudge_trigger_.Get_forced_left_lane_change_count();
+  left_vehicle_counters_2_ = C_nudge_trigger_.Get_left_vehicle_counters();
+  right_vehicle_counters_2_ = C_nudge_trigger_.Get_right_vehicle_counters();
+  left_roadedge_offset_last_2_ = C_nudge_trigger_.Get_left_roadedge_offset_last();
+  right_roadedge_offset_last_2_ = C_nudge_trigger_.Get_right_roadedge_offset_last();
+  left_roadedge_counters_level_1_2_ = C_nudge_trigger_.Get_left_roadedge_counters_level_1();
+  left_roadedge_counters_level_2_2_ = C_nudge_trigger_.Get_left_roadedge_counters_level_2();
+  right_roadedge_counters_level_1_2_ = C_nudge_trigger_.Get_right_roadedge_counters_level_1();
+  right_roadedge_counters_level_2_2_ = C_nudge_trigger_.Get_right_roadedge_counters_level_2();
+  last_left_soft_roadedge_offset_2_ = C_nudge_trigger_.Get_last_left_soft_roadedge_offset();
+  last_right_soft_roadedge_offset_2_ = C_nudge_trigger_.Get_last_right_soft_roadedge_offset();
+  left_lat_overlap_increase_counter_2_ = C_nudge_trigger_.Get_left_lat_overlap_increase_counter();
+  right_lat_overlap_increase_counter_2_ = C_nudge_trigger_.Get_right_lat_overlap_increase_counter();
+  left_lat_overlap_decrease_counter_2_ = C_nudge_trigger_.Get_left_lat_overlap_decrease_counter();
+  right_lat_overlap_decrease_counter_2_ = C_nudge_trigger_.Get_right_lat_overlap_decrease_counter();
+  has_left_roadedge_flag_2_ = C_nudge_trigger_.Get_has_left_roadedge_flag();
+  has_right_roadedge_flag_2_ = C_nudge_trigger_.Get_has_right_roadedge_flag();
+  last_left_soft_roadedge_offset_ads_2_ = C_nudge_trigger_.Get_last_left_soft_roadedge_offset_ads();
+  last_right_soft_roadedge_offset_ads_2_ =
+      C_nudge_trigger_.Get_last_right_soft_roadedge_offset_ads();
+  left_lat_overlap_increase_counter_ads_2_ =
+      C_nudge_trigger_.Get_left_lat_overlap_increase_counter_ads();
+  right_lat_overlap_increase_counter_ads_2_ =
+      C_nudge_trigger_.Get_right_lat_overlap_increase_counter_ads();
+  left_lat_overlap_decrease_counter_ads_2_ =
+      C_nudge_trigger_.Get_left_lat_overlap_decrease_counter_ads();
+  right_lat_overlap_decrease_counter_ads_2_ =
+      C_nudge_trigger_.Get_right_lat_overlap_decrease_counter_ads();
+  has_left_roadedge_flag_ads_2_ = C_nudge_trigger_.Get_has_left_roadedge_flag_ads();
+  has_right_roadedge_flag_ads_2_ = C_nudge_trigger_.Get_has_right_roadedge_flag_ads();
+  last_xy_point_2_ = C_nudge_trigger_.Get_last_xy_point();
